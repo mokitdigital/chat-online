@@ -14,6 +14,8 @@
 # 🛠 Tecnologias
 Este projeto foi desenvolvido com as seguintes tecnologias
 * [Node.js](https://nodejs.org/)
+* [Express](https://expressjs.com/)
+* [Typescript](https://www.typescriptlang.org/)
 * [Vue.js](https://vuejs.org/)
 * [Socket.io](https://socket.io/)
 * [Day.js](https://day.js.org/)
