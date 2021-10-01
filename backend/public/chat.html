@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/chat.css">
+</head>
+
+<body>
+
+  <div id="app">
+
+    <div class="content">
+
+      <div class="sidebar">
+
+        <div class="search-form-container">
+          <form class="search-form" action="" method="">
+            <span class="magnifier">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M228 68.7c-68.5 0-124 55.5-124 124 0 68.5 55.5 124 124 124 68.5 0 124-55.5 124-124C352 124.2 296.5 68.7 228 68.7zM228 283.3c-50 0-90.6-40.6-90.6-90.6 0-50 40.6-90.6 90.6-90.6s90.6 40.6 90.6 90.6C318.6 242.7 278 283.3 228 283.3z"
+                  class="a" />
+                <path
+                  d="M392.8 414.3c6.1 9.2 4.1 21.3-4.4 26.9 -8.5 5.7-20.5 2.8-26.6-6.4l-88.6-133.2c-6.1-9.2-4.1-21.3 4.4-26.9 8.5-5.7 20.5-2.8 26.6 6.4L392.8 414.3z"
+                  class="a" />
+              </svg>
+            </span>
+
+            <label for="search">Search</label>
+            <input id="search" name="search" type="text" placeholder="Search" />
+          </form>
+        </div>
+
+        <div class="contacts">
+
+          <nav class="contacts-nav">
+            <ul>
+              <li><a href="">Contatos</a></li>
+              <li>
+                <a href="index.html">Sair</a>
+              </li>
+            </ul>
+          </nav>
+
+          <ul class="contact-list">
+
+            <li class="person" v-for="(prsn, idx) in persons" :key="idx">
+              <span class="avatar">
+                <img :src="prsn.imagem" :alt="prsn.nome" />
+                <span class="status online"></span>
+              </span>
+              <span class="info">
+                <span class="name">{{ prsn.nome }}</span>
+                <span class="status-msg">{{ prsn.ultimaMensagem }}</span>
+                <span class="unread-messages" v-if="prsn.numMensagens > 0">{{ prsn.numMensagens }}</span>
+                <span class="unread-messages" v-else></span>
+              </span>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="chatbox" v-if="conversa">
+
+        <div class="person">
+          <span class="avatar">
+            <img src="http://vzkiss.com/demo/chatbox/images/avatar/avatar_2.jpeg" alt="Debby Jones" />
+            <span class="status online"></span>
+          </span>
+          <span class="info">
+            <span class="name">Debby Jones</span>
+            <span class="login-status">Online</span>
+          </span>
+        </div>
+
+        <div class="chatbox-messages" v-for="(msg, idx) in mensagens" :key="idx">
+
+          <div class="messages clear" v-if="this.info.nome === msg.nome">
+            <div class="user">
+              <div class="message-container">
+                <div class="message">
+                  <p>{{ msg.texto }}</p>
+                </div>
+                <span class="delivered">{{ msg.nome }}</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="messages clear" v-else>
+            <span class="avatar">
+              <img src="http://vzkiss.com/demo/chatbox/images/avatar/avatar_2.jpeg" alt="Debby Jones" />
+            </span>
+            <div class="sender">
+              <div class="message-container">
+                <div class="message">
+                  <p>{{ msg.texto }}</p>
+                </div>
+                <span class="delivered">{{ msg.data }}</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="message-form-container">
+
+          <div class="message-form">
+            <textarea id="message" name="message" placeholder="Type a message here..." v-model="info.mensagem"></textarea>
+            <button class="send-btn" @click="enviaMensagem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.2 30.1">
+                <path class="st0"
+                  d="M2.1 14.6C8.9 12 28.5 4 28.5 4l-3.9 22.6c-0.2 1.1-1.5 1.5-2.3 0.8l-6.1-5.1 -4.3 4 0.7-6.7 13-12.3 -16 10 1 5.7 -3.3-5.3 -5-1.6C1.5 15.8 1.4 14.8 2.1 14.6z" />
+              </svg>
+            </button>
+          </div><!-- /.search-form -->
+
+
+        </div>
+
+      </div>
+
+      <div class="chatbox" v-else></div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.js"></script>
+  <script src="./scripts/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-socket.io@3.0.10/dist/vue-socketio.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="./scripts/chat.js"></script>
+</body>
+
+</html>

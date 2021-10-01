@@ -1,0 +1,81 @@
+*, *:after, *:before {
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+  font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+html {
+  font-size:62.5%;
+}
+body {
+  font: 400 normal 14px/1.4 'Lato', sans-serif;
+  color: #706c72;
+  background: #0bc3f7;
+}
+
+.clear:before,
+.clear:after {
+   content: ' ';
+   display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+.clear {
+    *zoom: 1;
+}
+img {
+  width: 100%;
+  vertical-align: bottom;
+}
+a, a:visited {
+  color: #2895F1;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: none;
+}
+a:focus {
+  outline: 1;
+}
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  height: 100%;
+}
+
+select {
+  width: 200px;
+  padding: 10px;
+  border-radius: 1rem;
+  margin-block: 1rem;
+}
+
+input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 1rem;
+  margin-block: 1rem;
+}
+
+button {
+  padding: 1rem;
+  width: 200px;
+  border-radius: 1rem;
+  margin-block: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: linear 0.5s;
+}
+
+button:hover {
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+}
